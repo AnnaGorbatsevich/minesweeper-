@@ -15,7 +15,7 @@ function on_message(self, message_id, message, sender)
 		local s = 1.2
 		self.score = self.score + 1
 		gui.set_text(self.score_node, tostring(self.score))
-	
+
 		gui.animate(self.score_node, gui.PROP_SCALE, vmath.vector4(s, s, s, 0), gui.EASING_OUT, 0.1, 0.0, scale_down)
 	elseif message_id == hash("game_over") then
 		gui.set_text(self.result_node, "Unfortunately you lost, try again")

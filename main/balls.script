@@ -1,6 +1,6 @@
 go.property("color", hash("none"))
 
-local normal_scale = 1.5
+local normal_scale = 2
 local zoomed_scale = 3
 
 function init(self)
