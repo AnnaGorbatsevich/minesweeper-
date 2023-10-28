@@ -1,0 +1,26 @@
+go.property("color", hash("none"))
+
+local normal_scale = 1.5
+local zoomed_scale = 3
+
+function init(self)
+	self.rot = go.get_rotation()
+	go.set_scale(normal_scale)
+end
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("color") then
+		sprite.play_flipbook("#sprite", self.color)
+		go.cancel_animations(".", "scale")
+		go.animate(".", "scale", go.PLAYBACK_ONCE_FORWARD, normal_scale, go.EASING_INOUTSINE, 0.1)
+	elseif message_id == hash("reset") then
+		sprite.play_flipbook("#sprite", "grey")
+		go.cancel_animations(".", "scale")
+		go.animate(".", "scale", go.PLAYBACK_ONCE_FORWARD, normal_scale, go.EASING_INOUTSINE, 0.1)
+	elseif message_id == hash("zoom") then
+		go.animate(".", "scale", go.PLAYBACK_ONCE_FORWARD, zoomed_scale, go.EASING_INOUTSINE, 0.1)
+	elseif message_id == hash("delete") then
+		go.delete()
+	end
+end
